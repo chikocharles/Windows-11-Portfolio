@@ -130,7 +130,7 @@ export const Taskbar = ({ openWindows, onWindowClick, onOpenWindow }: TaskbarPro
           onClick={() => setShowStartMenu(!showStartMenu)}
         >
           {/* <Menu className="h-4 w-4 text-primary" /> */}
-          <img src={"https://github.com/chikocharles/Windows-11-Portfolio/blob/main/src/assets/windows_logo-removebg-preview.png " />
+          <img src={"https://github.com/chikocharles/Windows-11-Portfolio/blob/main/src/assets/windows_logo-removebg-preview.png"} alt="Tech Stack" className="h-10 w-30 object-contain " />
           {/*<img src={"https://www.citypng.com/public/uploads/preview/hd-windows-11-logo-icon-transparent-background-11663458838jo5iexhr4e.png"} alt="Tech Stack" className="h-10 w-30 object-contain hover:bg-taskbar-hover hover-bounce" /> */}
         </Button>
       </div>
