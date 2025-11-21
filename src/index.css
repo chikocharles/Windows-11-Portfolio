@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Windows 11 Inspired Color System */
+    --background: 0 0% 98%;
+    --foreground: 240 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 15%;
+
+    /* Windows 11 Blue */
+    --primary: 207 100% 42%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 207 100% 60%;
+
+    --secondary: 200 15% 92%;
+    --secondary-foreground: 240 10% 15%;
+
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 180 100% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 207 100% 42%;
+
+    --radius: 0.75rem;
+
+    /* Windows 11 Glass Effect Colors */
+    --glass-bg: 0 0% 100%;
+    --glass-border: 0 0% 90%;
+    
+    /* Taskbar */
+    --taskbar-bg: 0 0% 96%;
+    --taskbar-hover: 0 0% 90%;
+    
+    /* Shadows */
+    --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+    --shadow-window: 0 20px 60px -10px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 0 40px rgba(0, 120, 212, 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 240 10% 10%;
+    --foreground: 0 0% 95%;
+
+    --card: 240 10% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 240 10% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 207 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 207 100% 70%;
+
+    --secondary: 240 10% 18%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 240 10% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 10% 20%;
+    --input: 240 10% 20%;
+    --ring: 207 100% 55%;
+    
+    --glass-bg: 240 10% 15%;
+    --glass-border: 240 10% 25%;
+    
+    --taskbar-bg: 240 10% 12%;
+    --taskbar-hover: 240 10% 18%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-hidden;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-window {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(40px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-window), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+  
+  .glass-taskbar {
+    background: rgba(248, 248, 248, 0.8);
+    backdrop-filter: blur(40px) saturate(180%);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .icon-hover {
+    transition: var(--transition-smooth);
+  }
+  
+  .icon-hover:hover {
+    transform: translateY(-4px);
+  }
+  
+  .icon-hover:active {
+    transform: scale(0.95);
+  }
+  
+  .window-enter {
+    animation: window-appear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  @keyframes window-appear {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .taskbar-button {
+    transition: var(--transition-smooth);
+  }
+  
+  .taskbar-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  .taskbar-button:active {
+    transform: scale(0.95);
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* macOS-style dock hover effect */
+  .dock-icon {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: bottom center;
+  }
+
+  .dock-icon:hover {
+    transform: scale(1.5) translateY(-10px);
+  }
+
+  .dock-icon:hover ~ .dock-icon {
+    transform: scale(1.2) translateY(-5px);
+  }
+
+  .dock-icon:has(~ .dock-icon:hover) {
+    transform: scale(1.2) translateY(-5px);
+  }
+}
+
+/* Single-run bounce-on-hover utility */
+@keyframes bounce-once {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-10px); }
+  50% { transform: translateY(0); }
+  70% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.hover-bounce:hover {
+  animation: bounce-once 620ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
